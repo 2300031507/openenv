@@ -1,4 +1,4 @@
-def grade(final_observation, steps_taken, max_steps):
+def grade_task(final_observation, steps_taken, max_steps):
     """
     Returns a score between 0.0 and 1.0 for Hard Task.
     """

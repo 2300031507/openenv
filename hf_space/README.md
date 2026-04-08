@@ -34,17 +34,19 @@ The environment provides the following telemetry (Pydantic models):
 - `active_incidents`: List of ongoing issues (e.g., `high_cpu`, `disk_full`).
 
 ## Tasks
-1. **Easy: CPU Spike Response**
-   - Goal: Recognize a CPU alert and scale resources.
-2. **Medium: Storage and CPU Pressure**
-   - Goal: Manage multiple resources simultaneously without exhausting the budget/steps.
-3. **Hard: Cascading Database and Memory Failure**
-   - Goal: Identify root causes (OOM, slow queries) and resolve them before a full service outage.
+1. Easy: CPU Spike Response
+Goal: Recognize a CPU alert and scale resources.
+2. Medium: Storage and CPU Pressure
+Goal: Manage multiple resources simultaneously without exhausting the budget/steps.
+3. Hard: Cascading Database and Memory Failure
+Goal: Identify root causes (OOM, slow queries) and resolve them before a full service outage.
+4. Extra: Disk Cleanup
+Goal: Resolve disk full incidents by clearing logs.
 
-## Reward System
-- **Partial Progress**: Rewards for resolving individual incidents (e.g., +0.4 for scaling up during a spike).
-- **Penalties**: Penalties for unnecessary or harmful actions (e.g., -0.2 for restarting a healthy service).
-- **Final Score**: A deterministic grader in `graders/grader.py` calculates a score from 0.0 to 1.0 based on final health and efficiency.
+Reward System
+- Partial Progress: Rewards for resolving individual incidents (e.g., +0.4 for scaling up during a spike).
+- Penalties: Penalties for unnecessary or harmful actions (e.g., -0.2 for restarting a healthy service).
+- Final Score: Task-specific deterministic graders in the `graders/` directory calculate a score from 0.0 to 1.0 based on final health and efficiency.
 
 ## Setup Instructions
 
