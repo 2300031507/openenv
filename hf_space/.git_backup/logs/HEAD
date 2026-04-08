@@ -7,3 +7,4 @@ d5e49d72483bd0221d7dab4a257901e18e51f655 6bf5c0ab2553a045e1fe6e17013b4dfe1ae6123
 ab7dc4bfb5301e8e7abeb439852c549531c9b5e9 f9ce48dd3062de1754f036a72e229f09f6b1e9ab GitHub User <github@example.com> 1775654284 +0530	commit: fix: keep container alive with FastAPI on port 7860
 f9ce48dd3062de1754f036a72e229f09f6b1e9ab b20b04eb09977429cc72aae4ee2bbed1e0a60ba2 GitHub User <github@example.com> 1775655153 +0530	commit: adv: add mock mode for perfect logs and varied rewards
 b20b04eb09977429cc72aae4ee2bbed1e0a60ba2 72637ce81580a56509e545604062f8d2398b2413 GitHub User <github@example.com> 1775656695 +0530	commit: fix: implement OpenEnv API requirements with FastAPI
+72637ce81580a56509e545604062f8d2398b2413 8db149c028fe7a986749446be28cf1a2a63b98ef GitHub User <github@example.com> 1775657342 +0530	commit: fix: full OpenEnv specification compliance (YAML, Models, API)

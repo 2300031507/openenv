@@ -1,1 +1,1 @@
-final: ensure OpenEnv API compliance with FastAPI wrapper
+fix: full OpenEnv specification compliance (YAML, Models, API)
