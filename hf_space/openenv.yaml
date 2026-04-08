@@ -1,75 +1,35 @@
+spec_version: 1
 name: CloudIncidentEnv
-version: 1.0.0
-description: A high-stakes RL environment for Cloud Reliability Engineering (CRE).
-domain: Infrastructure Automation
-author: Meta OpenEnv Contributor
-license: MIT
-
-environment:
-  class: env.CloudIncidentEnv
-  python_version: "3.10"
-  requirements:
-    - pydantic>=2.0.0
-    - openai>=1.0.0
-    - pyyaml
-    - fastapi
-    - uvicorn
-
-reward_range: [0.0, 1.0]
+type: space
+runtime: fastapi
+app: server.app:app
+port: 8000
+description: >
+  Cloud Infrastructure Incident Response environment with OpenEnv reference structure for
+  clip-case review, quality-rule refinement, and deterministic scoring.
+tags:
+  - openenv
+  - reinforcement-learning
+  - clip-quality
+  - quality-analysis
+  - clip-review
+  - hackathon-2026
 
 tasks:
-  - id: easy_cpu_spike
+  - id: task_easy
     difficulty: easy
-    file: tasks/easy.py
-    grader: tasks/easy.py:grade_task
+    file: server/tasks/task_easy.py
+    grader: graders.py:grade_task
     max_score: 1.0
 
-  - id: medium_storage_pressure
+  - id: task_medium
     difficulty: medium
-    file: tasks/medium.py
-    grader: tasks/medium.py:grade_task
+    file: server/tasks/task_medium.py
+    grader: graders.py:grade_task
     max_score: 1.0
 
-  - id: hard_cascading_failure
+  - id: task_hard
     difficulty: hard
-    file: tasks/hard.py
-    grader: tasks/hard.py:grade_task
+    file: server/tasks/task_hard.py
+    grader: graders.py:grade_task
     max_score: 1.0
-
-  - id: easy_disk_cleanup
-    difficulty: easy
-    file: tasks/extra.py
-    grader: tasks/extra.py:grade_task
-    max_score: 1.0
-
-observation_space:
-  type: object
-  properties:
-    service_health: { type: number, minimum: 0.0, maximum: 1.0 }
-    cpu_usage: { type: number, minimum: 0.0, maximum: 1.0 }
-    error_rate: { type: number, minimum: 0.0, maximum: 1.0 }
-    db_latency_ms: { type: number, minimum: 0.0 }
-    disk_usage: { type: number, minimum: 0.0, maximum: 1.0 }
-    logs: { type: array, items: { type: string } }
-    active_incidents: { type: array, items: { type: string } }
-
-action_space:
-  type: object
-  properties:
-    action_type:
-      type: string
-      enum:
-        - scale_up
-        - restart_service
-        - clear_logs
-        - fix_db_index
-        - analyze_logs
-        - rollback
-        - do_nothing
-    target: { type: string, default: "main_service" }
-    params: { type: object }
-
-runtime:
-  docker_image: openenv-cloud-incident
-  memory_limit: 8GB
-  cpu_limit: 2

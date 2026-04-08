@@ -1,0 +1,19 @@
+.git
+.gitignore
+.copilot/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.so
+*.log
+.env
+.venv/
+venv/
+clip_quality_env.egg-info/
+
+state/
+tests/
+.github/
+.resources/
+.copilot/skills/
+t, sys
