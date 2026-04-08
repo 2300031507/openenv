@@ -1,1 +1,1 @@
-Use unique grader files for each task to resolve validation error
+Fix inference.py syntax, standardize grader to grade_task, and update task structure to resolve validation error

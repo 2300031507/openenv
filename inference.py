@@ -15,18 +15,18 @@ from graders.extra import grade_task as extra_grader
 def run_inference(task_config: dict):
     # Setup from environment variables
     api_base_url = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1/")
-    model_name = os.getenv("MODEL_NAME", "meta-llama/Meta-Llama-3-8B-Instruct")
-    hf_token = os.getenv("HF_TOKEN")
+    api_key = os.getenv("API_KEY") or os.getenv("HF_TOKEN")
+    model_name = os.getenv("MODEL_NAME", "meta-llama/Meta-Llama-3-70B-Instruct")
     
     is_mock = False
-    if not hf_token or hf_token == "MOCK":
-        print("Note: HF_TOKEN missing or set to MOCK. Running with Mock Agent.")
+    if not api_key or api_key == "MOCK":
+        print("Note: API_KEY/HF_TOKEN missing or set to MOCK. Running with Mock Agent.")
         is_mock = True
     
     # Initialize OpenAI client
     client = None
     if not is_mock:
-        client = OpenAI(base_url=api_base_url, api_key=hf_token)
+        client = OpenAI(base_url=api_base_url, api_key=api_key)
     
     env = CloudIncidentEnv(task_config)
     obs = env.reset()
