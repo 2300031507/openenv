@@ -10,3 +10,4 @@ b20b04eb09977429cc72aae4ee2bbed1e0a60ba2 72637ce81580a56509e545604062f8d2398b241
 72637ce81580a56509e545604062f8d2398b2413 8db149c028fe7a986749446be28cf1a2a63b98ef GitHub User <github@example.com> 1775657342 +0530	commit: fix: full OpenEnv specification compliance (YAML, Models, API)
 8db149c028fe7a986749446be28cf1a2a63b98ef 66c28efe381c402a8ca86fc6c72564862b6fbc04 GitHub User <github@example.com> 1775657842 +0530	commit: fix: final OpenEnv spec compliance (reset payload, YAML schema, and model serialization)
 66c28efe381c402a8ca86fc6c72564862b6fbc04 7b1c3eb5e2a9796a4914d97bc2b6c269636a4915 GitHub User <github@example.com> 1775658148 +0530	commit: fix: add pyproject.toml for multi-mode deployment and packaging compliance
+7b1c3eb5e2a9796a4914d97bc2b6c269636a4915 82570198d3b3528856fb0dae322f8fb15797fa54 GitHub User <github@example.com> 1775658441 +0530	commit: fix: full multi-mode deployment compliance (server/app.py, project.scripts, openenv-core dependency, uv.lock)
