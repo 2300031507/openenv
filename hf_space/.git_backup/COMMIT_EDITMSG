@@ -1,1 +1,1 @@
-fix: rename server entry point to main() for OpenEnv compliance
+fix: rename server entry point to main() and ensure spec compliance

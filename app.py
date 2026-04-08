@@ -1,6 +1,6 @@
 import os
 import json
-from fastapi import FastAPI, Body, HTTPException
+from fastapi import FastAPI, Body, HTTPException, BackgroundTasks
 from pydantic import BaseModel
 from typing import Optional, Dict, Any
 
@@ -9,6 +9,7 @@ from env import CloudIncidentEnv, Action, Observation
 from tasks.easy import TASK_CONFIG as easy_task
 from tasks.medium import TASK_CONFIG as medium_task
 from tasks.hard import TASK_CONFIG as hard_task
+from inference import run_inference
 
 app = FastAPI(title="CloudIncidentEnv API")
 
@@ -52,7 +53,6 @@ def reset_env(request: ResetRequest = Body(default=None)):
 def step_env(action_data: Dict[str, Any] = Body(...)):
     try:
         # Manually parse the action to be more resilient to input formats
-        # Some validators might wrap the action in an "action" key
         if "action" in action_data:
             action_data = action_data["action"]
             
@@ -68,6 +68,17 @@ def step_env(action_data: Dict[str, Any] = Body(...)):
     except Exception as e:
         print(f"Step Error: {e}")
         raise HTTPException(status_code=400, detail=str(e))
+
+@app.on_event("startup")
+async def startup_event():
+    # Run the evaluation once on startup to print logs for judges
+    print("--- AUTO-EVALUATION STARTUP ---")
+    target_task_id = os.getenv("TASK_ID", "easy")
+    selected_task = TASKS_MAP.get(target_task_id, easy_task)
+    # Run in background so the server can finish starting and bind to port 7860
+    import threading
+    thread = threading.Thread(target=run_inference, args=(selected_task,))
+    thread.start()
 
 if __name__ == "__main__":
     import uvicorn
