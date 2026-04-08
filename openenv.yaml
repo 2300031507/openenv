@@ -21,25 +21,25 @@ tasks:
   - id: easy_cpu_spike
     difficulty: easy
     file: tasks/easy.py
-    grader: graders/grader.py:grade
+    grader: graders/easy.py:grade
     max_score: 1.0
 
   - id: medium_storage_pressure
     difficulty: medium
     file: tasks/medium.py
-    grader: graders/grader.py:grade
+    grader: graders/medium.py:grade
     max_score: 1.0
 
   - id: hard_cascading_failure
     difficulty: hard
     file: tasks/hard.py
-    grader: graders/grader.py:grade
+    grader: graders/hard.py:grade
     max_score: 1.0
 
   - id: easy_disk_cleanup
     difficulty: easy
     file: tasks/extra.py
-    grader: graders/grader.py:grade
+    grader: graders/extra.py:grade
     max_score: 1.0
 
 observation_space:
