@@ -22,8 +22,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY --chown=user . .
 
 # Metadata and configuration
-ENV API_BASE_URL="https://api-inference.huggingface.co/v1/"
-ENV MODEL_NAME="meta-llama/Llama-3-70b-instruct"
+ENV API_BASE_URL="https://router.huggingface.co/v1/"
+ENV MODEL_NAME="meta-llama/Meta-Llama-3-8B-Instruct"
 ENV HF_TOKEN=""
 ENV TASK_ID="easy"
 

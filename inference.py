@@ -8,14 +8,19 @@ from tasks.medium import TASK_CONFIG as medium_task
 from tasks.hard import TASK_CONFIG as hard_task
 from graders.grader import grade_task
 
+from fastapi import FastAPI, BackgroundTasks
+import uvicorn
+
+app = FastAPI()
+
 def run_inference(task_config: dict):
     # Setup from environment variables
-    api_base_url = os.getenv("API_BASE_URL", "https://api-inference.huggingface.co/v1/")
-    model_name = os.getenv("MODEL_NAME", "meta-llama/Llama-3-70b-instruct")
+    api_base_url = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1/")
+    model_name = os.getenv("MODEL_NAME", "meta-llama/Meta-Llama-3-8B-Instruct")
     hf_token = os.getenv("HF_TOKEN")
     if not hf_token:
         print("Error: HF_TOKEN environment variable is required.")
-        sys.exit(1)
+        return # Return instead of exit for the server to stay alive
     
     # Initialize OpenAI client (Hugging Face supports OpenAI-compatible API)
     client = OpenAI(base_url=api_base_url, api_key=hf_token)
@@ -91,8 +96,23 @@ def run_inference(task_config: dict):
     rewards_str = ",".join([f"{r:.2f}" for r in rewards])
     print(f"[END] success={str(success).lower()} steps={steps} score={score:.2f} rewards={rewards_str}")
 
+@app.get("/")
+def read_root():
+    return {"status": "Environment is LIVE", "tasks": ["easy", "medium", "hard"]}
+
+@app.post("/run")
+def run_task(background_tasks: BackgroundTasks, task_id: str = "easy"):
+    tasks_map = {
+        "easy": easy_task,
+        "medium": medium_task,
+        "hard": hard_task
+    }
+    selected_task = tasks_map.get(task_id, easy_task)
+    background_tasks.add_task(run_inference, selected_task)
+    return {"message": f"Task '{task_id}' started in background. Check container logs for output."}
+
 if __name__ == "__main__":
-    # In a real HF Space, we'd run the specific task requested via environment variable
+    # In a real HF Space, we run the task once AND keep the server alive
     target_task_id = os.getenv("TASK_ID", "easy")
     
     tasks_map = {
@@ -102,4 +122,9 @@ if __name__ == "__main__":
     }
     
     selected_task = tasks_map.get(target_task_id, easy_task)
+    
+    # Run once at startup as requested
     run_inference(selected_task)
+    
+    # Keep server alive on HF port 7860
+    uvicorn.run(app, host="0.0.0.0", port=7860)
