@@ -1,0 +1,8 @@
+0000000000000000000000000000000000000000 d5e49d72483bd0221d7dab4a257901e18e51f655 GitHub User <github@example.com> 1775652410 +0530	clone: from https://huggingface.co/spaces/MarioLawrence/ai-workflow-simulator
+d5e49d72483bd0221d7dab4a257901e18e51f655 6bf5c0ab2553a045e1fe6e17013b4dfe1ae61234 GitHub User <github@example.com> 1775652471 +0530	commit: my env setup
+6bf5c0ab2553a045e1fe6e17013b4dfe1ae61234 6278528b1baa1dbb7ac90ceae5a7d1119ae9e4b8 GitHub User <github@example.com> 1775652920 +0530	commit: fix: add missing HF Space configuration in README
+6278528b1baa1dbb7ac90ceae5a7d1119ae9e4b8 15f2ee5bd9cd71f0da7b476f678d9bb52f6e0a5e GitHub User <github@example.com> 1775653285 +0530	commit: fix: update HF Inference API URL to router.huggingface.co
+15f2ee5bd9cd71f0da7b476f678d9bb52f6e0a5e 4b115d0b58564162b61abef2a95f6b496246e908 GitHub User <github@example.com> 1775653448 +0530	commit: fix: use correct model ID meta-llama/Meta-Llama-3-70B-Instruct
+4b115d0b58564162b61abef2a95f6b496246e908 ab7dc4bfb5301e8e7abeb439852c549531c9b5e9 GitHub User <github@example.com> 1775653932 +0530	commit: fix: use 8B model and ensure latest code is pushed
+ab7dc4bfb5301e8e7abeb439852c549531c9b5e9 f9ce48dd3062de1754f036a72e229f09f6b1e9ab GitHub User <github@example.com> 1775654284 +0530	commit: fix: keep container alive with FastAPI on port 7860
+f9ce48dd3062de1754f036a72e229f09f6b1e9ab b20b04eb09977429cc72aae4ee2bbed1e0a60ba2 GitHub User <github@example.com> 1775655153 +0530	commit: adv: add mock mode for perfect logs and varied rewards

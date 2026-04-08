@@ -1,0 +1,54 @@
+name: CloudIncidentEnv
+version: 1.0.0
+description: A high-stakes RL environment for Cloud Reliability Engineering (CRE).
+domain: Infrastructure Automation
+author: Meta OpenEnv Contributor
+license: MIT
+
+environment:
+  class: env.CloudIncidentEnv
+  python_version: "3.10"
+  requirements:
+    - pydantic>=2.0.0
+    - openai>=1.0.0
+    - pyyaml
+
+tasks:
+  - id: easy_cpu_spike
+    difficulty: easy
+    file: tasks/easy.py
+    grader: graders/grader.py
+    max_score: 1.0
+
+  - id: medium_storage_pressure
+    difficulty: medium
+    file: tasks/medium.py
+    grader: graders/grader.py
+    max_score: 1.0
+
+  - id: hard_cascading_failure
+    difficulty: hard
+    file: tasks/hard.py
+    grader: graders/grader.py
+    max_score: 1.0
+
+observation_space:
+  service_health: [0.0, 1.0]
+  cpu_usage: [0.0, 1.0]
+  error_rate: [0.0, 1.0]
+  db_latency_ms: [0.0, float]
+  disk_usage: [0.0, 1.0]
+
+action_space:
+  - scale_up
+  - restart_service
+  - clear_logs
+  - fix_db_index
+  - analyze_logs
+  - rollback
+  - do_nothing
+
+runtime:
+  docker_image: openenv-cloud-incident
+  memory_limit: 8GB
+  cpu_limit: 2
