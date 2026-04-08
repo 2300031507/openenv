@@ -8,3 +8,4 @@ ab7dc4bfb5301e8e7abeb439852c549531c9b5e9 f9ce48dd3062de1754f036a72e229f09f6b1e9a
 f9ce48dd3062de1754f036a72e229f09f6b1e9ab b20b04eb09977429cc72aae4ee2bbed1e0a60ba2 GitHub User <github@example.com> 1775655153 +0530	commit: adv: add mock mode for perfect logs and varied rewards
 b20b04eb09977429cc72aae4ee2bbed1e0a60ba2 72637ce81580a56509e545604062f8d2398b2413 GitHub User <github@example.com> 1775656695 +0530	commit: fix: implement OpenEnv API requirements with FastAPI
 72637ce81580a56509e545604062f8d2398b2413 8db149c028fe7a986749446be28cf1a2a63b98ef GitHub User <github@example.com> 1775657342 +0530	commit: fix: full OpenEnv specification compliance (YAML, Models, API)
+8db149c028fe7a986749446be28cf1a2a63b98ef 66c28efe381c402a8ca86fc6c72564862b6fbc04 GitHub User <github@example.com> 1775657842 +0530	commit: fix: final OpenEnv spec compliance (reset payload, YAML schema, and model serialization)
