@@ -11,7 +11,6 @@ from env import CloudIncidentEnv, Action, Observation
 from tasks.easy import TASK_CONFIG as easy_task
 from tasks.medium import TASK_CONFIG as medium_task
 from tasks.hard import TASK_CONFIG as hard_task
-from inference import run_inference
 
 app = FastAPI(title="CloudIncidentEnv API")
 
@@ -64,20 +63,11 @@ def step_env(action_data: Dict[str, Any] = Body(...)):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@app.on_event("startup")
-async def startup_event():
-    # Run evaluation on startup for log visibility
-    print("--- AUTO-EVALUATION STARTUP ---")
-    target_task_id = os.getenv("TASK_ID", "easy")
-    selected_task = TASKS_MAP.get(target_task_id, easy_task)
-    import threading
-    thread = threading.Thread(target=run_inference, args=(selected_task,))
-    thread.start()
-
 def main():
     """Entry point for the server."""
     import uvicorn
-    uvicorn.run("server.app:app", host="0.0.0.0", port=7860, reload=False)
+    # Using the app object directly is more robust than string reference
+    uvicorn.run(app, host="0.0.0.0", port=7860, reload=False)
 
 if __name__ == "__main__":
     main()

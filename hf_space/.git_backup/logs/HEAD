@@ -14,3 +14,4 @@ b20b04eb09977429cc72aae4ee2bbed1e0a60ba2 72637ce81580a56509e545604062f8d2398b241
 82570198d3b3528856fb0dae322f8fb15797fa54 c8b839fc16fb34c94d3ed2838a25448c0815bcc3 GitHub User <github@example.com> 1775658620 +0530	commit: fix: rename server entry point to main() for OpenEnv compliance
 c8b839fc16fb34c94d3ed2838a25448c0815bcc3 ea7336e088bcce2ccb09f1bd130f765488784df9 GitHub User <github@example.com> 1775658722 +0530	commit: fix: rename server entry point to main() and ensure spec compliance
 ea7336e088bcce2ccb09f1bd130f765488784df9 101a937cee75820d00bceaac529c4d198415d6df GitHub User <github@example.com> 1775660069 +0530	commit: fix: resolve port conflict by removing redundant server from inference.py and adding auto-eval trigger to app.py
+101a937cee75820d00bceaac529c4d198415d6df fb405bd66ec016031663edd36bc41e76a8880596 GitHub User <github@example.com> 1775660091 +0530	commit: fix: clean up directory structure

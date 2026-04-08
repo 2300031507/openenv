@@ -1,1 +1,1 @@
-fix: resolve port conflict by removing redundant server from inference.py and adding auto-eval trigger to app.py
+fix: clean up directory structure
