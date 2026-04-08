@@ -1,1 +1,1 @@
-fix: final OpenEnv spec compliance (reset payload, YAML schema, and model serialization)
+fix: add pyproject.toml for multi-mode deployment and packaging compliance
