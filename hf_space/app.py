@@ -1,15 +1,14 @@
 import os
-from fastapi import FastAPI, Body
+from fastapi import FastAPI, Body, HTTPException
 from pydantic import BaseModel
 from env import CloudIncidentEnv, Action, Observation
 from tasks.easy import TASK_CONFIG as easy_task
 from tasks.medium import TASK_CONFIG as medium_task
 from tasks.hard import TASK_CONFIG as hard_task
 
-app = FastAPI()
+app = FastAPI(title="CloudIncidentEnv API")
 
 # Global environment instance
-# In OpenEnv, TASK_ID can be passed via env variable
 task_id = os.getenv("TASK_ID", "easy")
 tasks_map = {
     "easy": easy_task,
@@ -25,18 +24,25 @@ def read_root():
 
 @app.post("/reset")
 def reset_env():
-    observation = env.reset()
-    return {"observation": observation.model_dump()}
+    try:
+        observation = env.reset()
+        # Return observation directly as a dict matching Observation model
+        return {"observation": observation.model_dump()}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/step")
 def step_env(action: Action = Body(...)):
-    observation, reward, done, info = env.step(action)
-    return {
-        "observation": observation.model_dump(),
-        "reward": float(reward),
-        "done": bool(done),
-        "info": info
-    }
+    try:
+        observation, reward, done, info = env.step(action)
+        return {
+            "observation": observation.model_dump(),
+            "reward": float(reward),
+            "done": bool(done),
+            "info": info
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn
