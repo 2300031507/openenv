@@ -1,1 +1,1 @@
-Move Dockerfile to root for Hugging Face Space
+Update port to 7860 and ensure Dockerfile is in root

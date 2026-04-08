@@ -1,2 +1,1 @@
-0000000000000000000000000000000000000000 7d52d1fbcd851228c19b774eb0142bc3df7930ca GitHub User <github@example.com> 1775669207 +0530	commit (initial): Overhaul codebase with ClipQualityEnv to resolve Task Validation errors and provide 3 tasks with graders
-7d52d1fbcd851228c19b774eb0142bc3df7930ca b4bd688dc6d13564882d6abf1d86fedad534de33 GitHub User <github@example.com> 1775669345 +0530	commit: Move Dockerfile to root for Hugging Face Space
+0000000000000000000000000000000000000000 0e50422bbd946f9e445179710d280fcf65653b2c GitHub User <github@example.com> 1775669451 +0530	commit (initial): Update port to 7860 and ensure Dockerfile is in root

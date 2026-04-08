@@ -3,7 +3,7 @@ name: CloudIncidentEnv
 type: space
 runtime: fastapi
 app: server.app:app
-port: 8000
+port: 7860
 description: >
   Cloud Infrastructure Incident Response environment with OpenEnv reference structure for
   clip-case review, quality-rule refinement, and deterministic scoring.

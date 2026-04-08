@@ -15,13 +15,13 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 # Copy all source code
 COPY . /app
 
-EXPOSE 8000
+EXPOSE 7860
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
 ENV ENABLE_WEB_INTERFACE=true
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD sh -lc 'curl -f http://localhost:${PORT:-8000}/health || exit 1'
+    CMD sh -lc 'curl -f http://localhost:${PORT:-7860}/health || exit 1'
 
-CMD ["sh", "-lc", "python -m uvicorn server.app:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["sh", "-lc", "python -m uvicorn server.app:app --host 0.0.0.0 --port ${PORT:-7860}"]
