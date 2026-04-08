@@ -73,10 +73,11 @@ class CloudIncidentEnv:
                 self._cpu_usage = max(0.2, self._cpu_usage - 0.4)
                 self._service_health = min(1.0, self._service_health + 0.2)
                 self._active_incidents.remove("high_cpu")
-                reward_val = 0.5
+                # Varied rewards based on how high the CPU was
+                reward_val = 0.5 + (0.3 * self._cpu_usage) 
                 self._logs.append("Scaling up: Resources increased, CPU stabilized.")
             else:
-                reward_val = 0.0 # Penalty for waste
+                reward_val = 0.05 # Tiny reward for checking, but mostly penalty for waste
                 self._logs.append("Scaling up: No CPU pressure detected. Resource waste.")
 
         elif action.action_type == ActionType.RESTART_SERVICE:
@@ -84,18 +85,20 @@ class CloudIncidentEnv:
                 self._service_health = min(1.0, self._service_health + 0.3)
                 self._error_rate = max(0.0, self._error_rate - 0.1)
                 self._active_incidents.remove("memory_leak")
-                reward_val = 0.6
+                # Varied reward based on health improvement
+                reward_val = 0.6 + (0.2 * (1.0 - self._service_health))
                 self._logs.append("Restarting: Memory cleared, health improved.")
             else:
                 self._service_health = max(0.0, self._service_health - 0.1)
-                reward_val = 0.0 # Penalty for interruption
+                reward_val = 0.0
                 self._logs.append("Restarting: Service interrupted without cause.")
 
         elif action.action_type == ActionType.CLEAR_LOGS:
             if "disk_full" in self._active_incidents:
+                # Varied reward based on disk pressure before clearing
+                reward_val = 0.4 + (0.4 * self._disk_usage)
                 self._disk_usage = 0.1
                 self._active_incidents.remove("disk_full")
-                reward_val = 0.4
                 self._logs.append("Logs cleared: Disk space reclaimed.")
             else:
                 reward_val = 0.05
@@ -103,9 +106,10 @@ class CloudIncidentEnv:
 
         elif action.action_type == ActionType.FIX_DB_INDEX:
             if "slow_queries" in self._active_incidents:
+                # Varied reward based on latency
+                reward_val = 0.5 + min(0.4, self._db_latency / 1000.0)
                 self._db_latency = 20.0
                 self._active_incidents.remove("slow_queries")
-                reward_val = 0.5
                 self._logs.append("Index fixed: Database latency normalized.")
             else:
                 reward_val = 0.0
