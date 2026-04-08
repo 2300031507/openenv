@@ -11,6 +11,7 @@ from env import CloudIncidentEnv, Action, Observation
 from tasks.easy import TASK_CONFIG as easy_task
 from tasks.medium import TASK_CONFIG as medium_task
 from tasks.hard import TASK_CONFIG as hard_task
+from tasks.extra import TASK_CONFIG as extra_task
 
 app = FastAPI(title="CloudIncidentEnv API")
 
@@ -20,7 +21,9 @@ TASKS_MAP = {
     "medium": medium_task,
     "medium_storage_pressure": medium_task,
     "hard": hard_task,
-    "hard_cascading_failure": hard_task
+    "hard_cascading_failure": hard_task,
+    "extra": extra_task,
+    "easy_disk_cleanup": extra_task
 }
 
 current_task_id = os.getenv("TASK_ID", "easy")

@@ -3,14 +3,10 @@ import sys
 import json
 from openai import OpenAI
 from env import CloudIncidentEnv, Action, ActionType
-from tasks.easy import TASK_CONFIG as easy_task
-from tasks.medium import TASK_CONFIG as medium_task
-from tasks.hard import TASK_CONFIG as hard_task
-from tasks.extra import TASK_CONFIG as extra_task
-from graders.easy import grade_task as easy_grader
-from graders.medium import grade_task as medium_grader
-from graders.hard import grade_task as hard_grader
-from graders.extra import grade_task as extra_grader
+from tasks.easy import TASK_CONFIG as easy_task, grade_task as easy_grader
+from tasks.medium import TASK_CONFIG as medium_task, grade_task as medium_grader
+from tasks.hard import TASK_CONFIG as hard_task, grade_task as hard_grader
+from tasks.extra import TASK_CONFIG as extra_task, grade_task as extra_grader
 
 def run_inference(task_config: dict):
     # Setup from environment variables
