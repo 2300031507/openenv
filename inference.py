@@ -6,7 +6,10 @@ from env import CloudIncidentEnv, Action, ActionType
 from tasks.easy import TASK_CONFIG as easy_task
 from tasks.medium import TASK_CONFIG as medium_task
 from tasks.hard import TASK_CONFIG as hard_task
-from graders.grader import grade_task
+from tasks.extra import TASK_CONFIG as extra_task
+from graders.easy import grade as easy_grader
+from graders.medium import grade as medium_grader
+from graders.hard import grade as hard_grader
 
 def run_inference(task_config: dict):
     # Setup from environment variables
@@ -103,7 +106,16 @@ def run_inference(task_config: dict):
         print(f"[STEP] step={steps} action={action.action_type.value} reward={reward:.2f} done={str(done).lower()} error={error_msg}")
     
     # Grading
-    score = grade_task(obs, steps, task_config["max_steps"])
+    grader = easy_grader
+    if "medium" in task_name:
+        grader = medium_grader
+    elif "hard" in task_name:
+        grader = hard_grader
+    elif "extra" in task_name or "disk_cleanup" in task_name:
+        from graders.grader import grade as extra_grader
+        grader = extra_grader
+        
+    score = grader(obs, steps, task_config["max_steps"])
     success = score >= 0.8
     
     # [END] success=<true|false> steps= score= rewards=<r1,r2,...>
@@ -117,7 +129,9 @@ if __name__ == "__main__":
     tasks_map = {
         "easy": easy_task,
         "medium": medium_task,
-        "hard": hard_task
+        "hard": hard_task,
+        "extra": extra_task,
+        "disk_cleanup": extra_task
     }
     
     selected_task = tasks_map.get(target_task_id, easy_task)

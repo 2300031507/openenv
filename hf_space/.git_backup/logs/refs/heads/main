@@ -16,3 +16,4 @@ c8b839fc16fb34c94d3ed2838a25448c0815bcc3 ea7336e088bcce2ccb09f1bd130f765488784df
 ea7336e088bcce2ccb09f1bd130f765488784df9 101a937cee75820d00bceaac529c4d198415d6df GitHub User <github@example.com> 1775660069 +0530	commit: fix: resolve port conflict by removing redundant server from inference.py and adding auto-eval trigger to app.py
 101a937cee75820d00bceaac529c4d198415d6df fb405bd66ec016031663edd36bc41e76a8880596 GitHub User <github@example.com> 1775660091 +0530	commit: fix: clean up directory structure
 fb405bd66ec016031663edd36bc41e76a8880596 be9bb09828c7acae7e1bc6c57473fc29e0943711 GitHub User <github@example.com> 1775660229 +0530	commit: fix: resolve port conflict by using unified 'server' entry point and removing startup trigger
+be9bb09828c7acae7e1bc6c57473fc29e0943711 bbf85c321d94c9e28abca5a8e5c2c9a9c288df4d GitHub User <github@example.com> 1775660392 +0530	commit: fix: upgrade to Python 3.10 to satisfy openenv-core requirements

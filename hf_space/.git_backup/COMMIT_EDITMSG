@@ -1,1 +1,1 @@
-fix: resolve port conflict by using unified 'server' entry point and removing startup trigger
+fix: upgrade to Python 3.10 to satisfy openenv-core requirements
