@@ -1,1 +1,1 @@
-fix: full multi-mode deployment compliance (server/app.py, project.scripts, openenv-core dependency, uv.lock)
+fix: rename server entry point to main() for OpenEnv compliance

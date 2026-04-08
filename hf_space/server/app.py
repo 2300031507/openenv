@@ -63,10 +63,10 @@ def step_env(action_data: Dict[str, Any] = Body(...)):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-def start():
+def main():
     """Entry point for the server."""
     import uvicorn
     uvicorn.run("server.app:app", host="0.0.0.0", port=7860, reload=False)
 
 if __name__ == "__main__":
-    start()
+    main()
